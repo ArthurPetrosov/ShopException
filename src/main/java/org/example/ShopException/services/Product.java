@@ -1,3 +1,7 @@
+package org.example.ShopException.services;
+
+import java.util.Objects;
+
 public class Product {
     protected int id;
     protected String title;
@@ -17,10 +21,11 @@ public class Product {
         return id == product.id && price == product.price && title.equals(product.title);
     }
 
-    // @Override
-    // public int hashCode() {
-        //return Objects.hash(id, title, price);
-    //}
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, price);
+    }
+
 
     public int getId() {
         return id;

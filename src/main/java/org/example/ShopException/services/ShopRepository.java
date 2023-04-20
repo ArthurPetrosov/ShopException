@@ -1,3 +1,5 @@
+package org.example.ShopException.services;
+
 public class ShopRepository {
     private Product[] products = new Product[0];
 
@@ -19,6 +21,10 @@ public class ShopRepository {
     }
 
     public void remove(int id) {
+        Product removedProduct = findById(id);
+        if (removedProduct == null) {
+            throw new NotFoundException(id);
+        }
         Product[] tmp = new Product[products.length - 1];
         int copyToIndex = 0;
         for (Product product : products) {
@@ -29,6 +35,7 @@ public class ShopRepository {
         }
         products = tmp;
     }
+
     public Product findById(int id) {
         for (Product product : products) {
             if (product.getId() == id) {
@@ -38,4 +45,3 @@ public class ShopRepository {
         return null;
     }
 }
-
